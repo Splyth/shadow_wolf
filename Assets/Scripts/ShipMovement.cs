@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Public: This class contains functions pertaning to ship movement
 public class ShipMovement : MonoBehaviour {
 
 public float movementSpeed = 1.0f;
 public int invert = -1; //Negative 1 for invert, positive 1 for not
 
+// Public: Updates Ship position via Player Input
 // Update is called once per frame
 	void Update () {
 		float horizontal = Input.GetAxis("Horizontal");
@@ -16,10 +18,6 @@ public int invert = -1; //Negative 1 for invert, positive 1 for not
 		Vector3 finalDirection = new Vector3(horizontal,invert*vertical,1.0f);
 		
 		transform.position += direction*movementSpeed*Time.deltaTime;
-
-
-
-		
 		transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.LookRotation(finalDirection),Mathf.Deg2Rad*50.0f);
 	}
 }
